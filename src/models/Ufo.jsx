@@ -8,8 +8,8 @@ const Ufo = ({ isRotating, ...props }) => {
     const { scene } = useGLTF(ufoScene);
 
     // Bobbing animation variables
-    const bobbingSpeed = 4.5; // Adjust speed of bobbing
-    const bobbingHeight = 0.4; // Adjust how high it bobs
+    const bobbingSpeed = 4.5; 
+    const bobbingHeight = 0.4; 
 
     const initialPosition = useRef([0, 0, 0]);
 
@@ -23,10 +23,8 @@ const Ufo = ({ isRotating, ...props }) => {
     // Animation loop for bobbing
     useFrame((state) => {
         if (ref.current) {
-            //if (isRotating && ref.current) {
-            const time = state.clock.getElapsedTime(); // Get elapsed time
-            const [x, y, z] = initialPosition.current;
-            // Apply bobbing effect as an offset to the initial position
+            const time = state.clock.getElapsedTime(); 
+            const [x, y, z] = initialPosition.current;  
             ref.current.position.set(x, y + Math.sin(time * bobbingSpeed) * bobbingHeight, z);
         }
     });
@@ -34,7 +32,7 @@ const Ufo = ({ isRotating, ...props }) => {
 
     return (
         <mesh {...props} ref={ref}>
-            {/* Use the primitive element to embed the model */}
+            {}
             <primitive object={scene} />
         </mesh>
     );

@@ -202,8 +202,9 @@ const Home = () => {
         
       }}
     >
-      I’m a motivated Fullstack Developer with expertise in JavaScript, TypeScript, Python, C++, Unreal Engine, and UI design.
-      I collaborate closely with clients to deliver tailored, effective solutions and seek opportunities to grow and learn as a programmer.
+      Entry-level Software Engineer with experience building backend systems and full-stack applications using Java, Spring Boot, PostgreSQL, React, TypeScript, and Docker. 
+      Skilled in REST API development, workflow automation, and scalable application design, with additional experience in gameplay systems and tools development using Unreal Engine and C++. 
+      Passionate about backend engineering, game development, and building clean, user-focused software solutions.
     
 
     </motion.p>
@@ -215,7 +216,7 @@ const Home = () => {
       <img
         src={adminPfp}
         alt="Dev Pfp"
-        className="w-[200px] h-[200px] rounded-full border-[4px]  border-blue-300 transform  translate-x-20 translate-y-10"
+        className="w-[300px] h-[300px] rounded-full border-[4px]  border-blue-300 transform  translate-x-5 translate-y-10"
       />
     </motion.p>
     </div>

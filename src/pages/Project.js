@@ -14,14 +14,14 @@ const Project = () => {
 
   const projects = [
     {
-      title: "Sword in the Stone",
+      title: "Multiplayer Backend Server",
       description: "A blender project created to practice lighting, environment building, animation, and asset creation",
-      techStack: ["Blender"],
+      techStack: ["Java, Springboot, PostgreSQL, Docker"],
       image:"images/sword_in_stone.png",
     },
     {
       title: "NEFP Multilingual Database Solution",
-      description: "A Fullstack webapp with a PostgreSQL database. This was a hands on experiment to create a unified asset for the foodbank",
+      description: "A Fullstack webapp with a PostgreSQL database. This was a hands on experiment to create a unified asset for the Northeast Food Program food bank",
       techStack: ["React", "Django", "Chart.js"],
       image:"images/NEFP_Showcase.png",
     },
