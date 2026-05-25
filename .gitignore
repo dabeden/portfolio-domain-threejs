@@ -32,3 +32,5 @@ Thumbs.db
 # Testing-related files
 coverage/
 .vercel
+
+.vercel

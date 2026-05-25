@@ -1,7 +1,7 @@
 
 
 import { a } from "@react-spring/three";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
@@ -22,7 +22,7 @@ export function Island({
   const dampingFactor = 0.95;
 
 
-  const handlePointerDown = (event) => {
+  const handlePointerDown = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(true);
@@ -30,15 +30,15 @@ export function Island({
     const clientX = event.touches ? event.touches[0].clientX : event.clientX;
 
     lastX.current = clientX;
-  };
+  }, [setIsRotating]);
 
-  const handlePointerUp = (event) => {
+  const handlePointerUp = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(false);
-  };
+  }, [setIsRotating]);
 
-  const handlePointerMove = (event) => {
+  const handlePointerMove = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     if (isRotating) {
@@ -52,9 +52,9 @@ export function Island({
 
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
-  };
+  }, [isRotating, viewport.width]);
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback((event) => {
     if (event.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
 
@@ -66,30 +66,30 @@ export function Island({
       islandRef.current.rotation.y -= 0.005 * Math.PI;
       rotationSpeed.current = -0.007;
     }
-  };
+  }, [isRotating, setIsRotating]);
 
-  const handleKeyUp = (event) => {
+  const handleKeyUp = useCallback((event) => {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       setIsRotating(false);
     }
-  };
+  }, [setIsRotating]);
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
   
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     lastX.current = clientX;
-  }
-  
-  const handleTouchEnd = (e) => {
+  }, [setIsRotating]);
+
+  const handleTouchEnd = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(false);
-  }
-  
-  const handleTouchMove = (e) => {
+  }, [setIsRotating]);
+
+  const handleTouchMove = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
   
@@ -101,7 +101,7 @@ export function Island({
       lastX.current = clientX;
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
-  }
+  }, [isRotating, viewport.width]);
 
   useEffect(() => {
     // Add event listeners for pointer and keyboard events
@@ -126,7 +126,7 @@ export function Island({
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove, handleKeyDown, handleKeyUp, handleTouchStart, handleTouchEnd, handleTouchMove]);
 
   useFrame(() => {
     // apply dampening to slow rotation

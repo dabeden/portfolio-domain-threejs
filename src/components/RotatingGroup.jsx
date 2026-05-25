@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback} from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import IconSphere from "./IconSphere";
 import * as THREE from "three"; 
@@ -36,7 +36,7 @@ const RotatingGroup = ({ icons}) => {
   
 
   // Handle pointer (mouse or touch) down event
-  const handlePointerDown = (event) => {
+  const handlePointerDown = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(true);
@@ -46,17 +46,18 @@ const RotatingGroup = ({ icons}) => {
 
     // Store the current clientX position for reference
     lastX.current = clientX;
-  };
+  }, [setIsRotating]);
 
   // Handle pointer (mouse or touch) up event
-  const handlePointerUp = (event) => {
+  const handlePointerUp = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(false);
-  };
+  }, [setIsRotating]);
+
 
   // Handle pointer (mouse or touch) move event
-  const handlePointerMove = (event) => {
+  const handlePointerMove =  useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
     if (isRotating) {
@@ -76,10 +77,10 @@ const RotatingGroup = ({ icons}) => {
       // Update the rotation speed
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
-  };
+  }, [isRotating, viewport.width]);
 
   // Handle keydown events
-  const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback((event) => {
     if (event.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
 
@@ -91,32 +92,32 @@ const RotatingGroup = ({ icons}) => {
       groupRef.current.rotation.y -= 0.005 * Math.PI;
       rotationSpeed.current = -0.007;
     }
-  };
+  }, [isRotating, setIsRotating]);
 
   // Handle keyup events
-  const handleKeyUp = (event) => {
+  const handleKeyUp = useCallback((event) => {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       setIsRotating(false);
     }
-  };
+  }, []);
 
   // Touch events for mobile devices
-  const handleTouchStart = (e) => {
+  const handleTouchStart = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
   
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     lastX.current = clientX;
-  }
+  }, [setIsRotating]);
   
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(false);
-  }
+  }, [setIsRotating]);
   
-  const handleTouchMove = (e) => {
+  const handleTouchMove = useCallback((e) => {
     e.stopPropagation();
     e.preventDefault();
   
@@ -128,7 +129,7 @@ const RotatingGroup = ({ icons}) => {
       lastX.current = clientX;
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
-  }
+  }, [isRotating, viewport.width]);
 
     // Add event listeners for pointer and keyboard events
   useEffect(() => {
@@ -153,7 +154,7 @@ const RotatingGroup = ({ icons}) => {
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove, handleKeyDown, handleKeyUp, handleTouchStart, handleTouchEnd, handleTouchMove]);
 
   useFrame(() => {
     if (!isRotating) {

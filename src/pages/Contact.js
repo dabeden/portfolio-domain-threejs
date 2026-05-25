@@ -17,6 +17,12 @@ const Contact = () => {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     };
+
+    const [alert, setAlert] = useState({
+        show: false,
+        text: '',
+        type: ''
+    });
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -38,13 +44,51 @@ const Contact = () => {
             
         ).then(() => {
             setisLoading(false);
-            // TODO: Show success message
-            // TODO: Hide an alert
+
+            // Success message
+            setAlert({
+                show: true,
+                text: 'Message sent successfully!',
+                type: 'success'
+            });
+
+            // Clear form
+            setForm({
+                name: '',
+                email: '',
+                message: ''
+            });
+
+            // Hide alert after 3 seconds
+            setTimeout(() => {
+                setAlert({
+                    show: false,
+                    text: '',
+                    type: ''
+                });
+            }, 3000);
+
         }).catch((error) => {
             setisLoading(false);
             console.log(error);
-            // TODO: Show error message
+
+            // Error message
+            setAlert({
+                show: true,
+                text: 'Something went wrong. Please try again.',
+                type: 'danger'
+            });
+
+            // Hide alert after 3 seconds
+            setTimeout(() => {
+                setAlert({
+                    show: false,
+                    text: '',
+                    type: ''
+                });
+            }, 3000);
         });
+
     };
     
     const handleFocus = () => {};
@@ -58,7 +102,18 @@ return (
          <div className="flex-1 min-w-[50%] flex flex-col">
             <h1 className="silkscreen-regular text-4xl text-blue-100 stretchtext-vert">Reach Out</h1>
 
-
+            {alert.show && (
+                <div
+                    className={`p-4 rounded-md mb-4 text-white silkscreen-regular ${
+                        alert.type === 'danger'
+                            ? 'bg-red-500'
+                            : 'bg-green-500'
+                    }`}
+                >
+                    {alert.text}
+                </div>
+            )}
+            
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -72,7 +127,7 @@ return (
                     type="text"
                     name="name"
                     className="input"
-                    placeholder="John"
+                    placeholder="first and last name"
                     required
                     value={form.name}
                     onChange={handleChange}
@@ -86,7 +141,7 @@ return (
                     type="email"
                     name="email"
                     className="input"
-                    placeholder="johndoe@gmail.com"
+                    placeholder="example@email.com"
                     required
                     value={form.email}
                     onChange={handleChange}
@@ -101,7 +156,7 @@ return (
                     name="message"
                     rows={4}
                     className="textarea"
-                    placeholder="How can I help you?"
+                    placeholder="What can I do for you?"
                     required
                     value={form.message}
                     onChange={handleChange}

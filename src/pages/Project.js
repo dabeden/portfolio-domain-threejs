@@ -90,13 +90,12 @@ const Project = () => {
            key={index}
            style={{
              width: "400px", // Increase the width of the slide
-             height: "550px",
+             height: "95%",
              display: "flex", // Enable flexbox for centering
              justifyContent: "center", // Center card horizontally
              alignItems: "center", // Center card vertically
              backgroundColor: "#10264A",
              borderRadius: "30px",
-             height: '95%',
              border: '1px solid #5f838a',
              
            }}
@@ -231,7 +230,6 @@ const Project = () => {
                 padding: '10px 20px',
                 backgroundColor: '#000',
                 color: '#fff',
-                border: 'none',
                 borderRadius: '5px',
                 cursor: 'pointer',
                 border: '1px solid white',

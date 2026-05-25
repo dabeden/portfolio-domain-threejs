@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
-import {Home, About, Project, Contact} from './pages/index';
+import {Home, Project, Contact} from './pages/index';
 import Navbar from './components/Navbar';
 
 
