@@ -1,265 +1,173 @@
-import {Suspense, React, useRef, useEffect, useState, forwardRef} from "react";
-import {Canvas} from '@react-three/fiber';
-import {Loader} from '../components/index.js';
-//import Tilt from "react-tilt";
-import { motion, useInView } from "framer-motion";
-import { Sphere, OrbitControls, useTexture } from "@react-three/drei";
-
-import Island from "../models/Island.jsx"
-import Sky from "../models/Sky.jsx"
-import Ufo from "../models/Ufo.jsx";
-import HomeInfo from "../components/HomeInfo.js";
-import CanvasBox from "../components/CanvasBox.js";
-
-import { fadeIn, textVariant } from "../utils/motion.js";
+import { motion } from "framer-motion";
 import adminPfp from "../assets/icons/me.png";
+import PondBackdrop from "../components/PondBackdrop";
+import { fadeIn } from "../utils/motion.js";
 
 const Home = () => {
+  const coreStacks = [
+    "Java",
+    "Spring Boot",
+    "React",
+    "JavaScript",
+    "TypeScript",
+    "PostgreSQL",
+    "C++",
+    "Docker",
+    "Python",
+    "Unreal Engine",
+    "Blender",
+    "Linux",
+    "Git",
 
-  
-    const images = [
-        { src: "images/acme_spaceship.png", title: "Alien Spaceship", description: "Made in Blender for exporting into Unreal Engine"},
-        { src: "images/sword_in_stone.png", title: "Sword in the Stone", description: "Made in Blender for animation and scene setting practice"},
-      
-    ];
+  ];
 
-    const cottageRef = useRef();
-    
+  return (
+    <section className="relative min-h-screen overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <PondBackdrop />
+      </div>
 
-    const [currentStage, setCurrentStage] = useState(1);
-    const [isRotating, setIsRotating] = useState(false);
-    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-
-    const adjustIslandForScreenSize = () => {
-        let screenScale, screenPosition;
-    
-        if (window.innerWidth < 768) {
-          screenScale = [10, 10, 10];
-          screenPosition = [0, -6.5, -43.4];
-        } else {
-          screenScale = [15, 15, 15];
-          screenPosition = [0, -6.5, -43.4];
-        }
-    
-        return [screenScale, screenPosition];
-      };
-    
-    
-    const adjustUfoForScreenSize = () => {
-        let screenScale, screenPosition;
-    
-        if(window.innerWidth < 768){
-            screenScale = [1, 1, 1];
-            screenPosition = [0, 5.2, -10];
-        } else { 
-            screenScale = [1, 1, 1];
-            screenPosition = [0, 5.2, -10];
-        }
-
-
-        
-        return [screenScale, screenPosition];
-    
-    }
-
-
-    const aboutMeRef = useRef(null); // Create a ref for the About Me section
-    const frameworkRef = useRef(null);
-    // Scroll to About Me section
-    const scrollToAboutMe = () => {
-      if (aboutMeRef.current) {
-        aboutMeRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    };
-
-    const scrollToFrameworks = () => {
-      if (frameworkRef.current) {
-        frameworkRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    };
-
-    //const [islandScale, islandPosition, islandRotation] = adjustModelForScreenSize();
-    const [islandScale, islandPosition] = adjustIslandForScreenSize();
-    const [ufoScale, ufoPosition] = adjustUfoForScreenSize();
-  
-
-
-    const icons = [
-      "images/icon_react.png",
-      "images/icon_git.png",
-      "images/icon_js.png",
-      "images/icon_python.png",
-      "images/icon_sql.png",
-      "images/icon_unreal.png",
-      "images/icon_typescript.png",
-      "images/icon_django.png",
-      "images/icon_aws.png",
-      "images/icon_django.png",
-    ];
-
-    
-      
-
-    return (
-        <section className="w-fill h-screen relative">
-            <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-                {currentStage && <HomeInfo currentStage={currentStage} onScrollToAbout={scrollToAboutMe} onScrollToFrameworks={scrollToFrameworks}/>}
+      <div className="relative z-10 px-6 py-10 sm:px-10 lg:px-16">
+        <div className="mx-auto flex max-w-6xl flex-col gap-14">
+          <motion.div
+            variants={fadeIn("up", "", 0.2, 0.8)}
+            initial="hidden"
+            animate="show"
+            className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]"
+          >
+            <div className="text-left">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-sky-200/90">
+                Software Engineer
+              </p>
+              <h1 className="text-4xl font-black tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">
+                Backend systems, automation, and interactive software.
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
+                Software developer focused on backend systems, automation, and creative technical projects.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {coreStacks.map((stack) => (
+                  <span
+                    key={stack}
+                    className="rounded-full border border-sky-200/30 bg-sky-400/10 px-4 py-2 text-sm font-semibold text-sky-100"
+                  >
+                    {stack}
+                  </span>
+                ))}
+              </div>
             </div>
-            <Canvas
-                
-                className={`we-full h-screen bg-transparent ${isRotating ? 
-                'cursor-grabbing' : 'cursor-grab'}`}
-                
-                camera={{near: 0.1, far: 1000}}
-                style={{marginTop:'-8px',
-                  position: 'relative',
-                  
-                  pointerEvents: 'auto', // Ensure canvas can capture mouse events
-                }}
+
+            <motion.div
+              variants={fadeIn("up", "", 0.25, 0.9)}
+              initial="hidden"
+              animate="show"
+              className="flex justify-center lg:justify-end"
             >
-                <Suspense fallback={<Loader />}>
-                    <directionalLight position={[1,1,1]} intensity={1} />
-                    <ambientLight intensity={.5}/>
-                    <pointLight />
-                    <spotLight />
-                    <hemisphereLight skycolor="#b1e1ff" groundColor="#000000" intensity={1}/>
+              <div className="rounded-[2rem] border border-white/10 bg-slate-950/55 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+                <img
+                  src={adminPfp}
+                  alt="Portrait of the developer"
+                  className="h-[280px] w-[280px] rounded-[1.5rem] object-cover sm:h-[320px] sm:w-[320px]"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
 
-                    
-                    <Sky 
-                    isRotating={isRotating}
-                    rotation={[0,0,0]}
-                    />;
-                    
-                    <Island
-                        isRotating={isRotating}
-                        setIsRotating={setIsRotating}
-                        setCurrentStage={setCurrentStage}
-                        position={islandPosition}
-                        scale={[.7,.7,.7]}
-                        rotation={[0.1, 4.7, 0]}
-                        
-                    />;
-                    
-                    <Ufo
-                        isRotating={isRotating}
-                        scale={ufoScale}
-                        position={ufoPosition}
-                        rotation={[.4, 5.2, -.2]}
-                    />;
-                    
-                    
-                </Suspense>
-            </Canvas>
-<div className="spacer wave-svg-layer-bluepurpletop">
-  <div className="flex flex-col h-full justify-between"> {/* Ensure the container is full height and content is spaced */}
-    {/* Content that should be at the top */}
-    <div>
-      {/* Any content you want at the top goes here */}
-    </div>
+          <motion.div
+            variants={fadeIn("up", "", 0.3, 0.9)}
+            initial="hidden"
+            animate="show"
+            className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+          >
+            <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-6 backdrop-blur-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-100/85">
+                Overview
+              </p>
+              <p className="mt-4 text-base leading-8 text-slate-100">
+                Entry-level Software Engineer with experience building backend systems and full-stack applications using Java, Spring Boot, PostgreSQL, React, TypeScript, and Docker. Skilled in REST API development, workflow automation, and scalable application design, with additional experience in gameplay systems and tools development using Unreal Engine and C++.
+              </p>
+            </div>
 
-    {/* 'Overview' text at the bottom */}
-    <motion.div
-      variants={fadeIn("up", "", 1, 1)}
-      initial="hidden"
-      animate="show"
-      className="about-me-section px-10 text-blue-200 font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] nunito-bold justify-center"
-      ref={aboutMeRef}
-      
+            <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-6 backdrop-blur-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-100/85">
+                Focus areas
+              </p>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <h2 className="text-lg font-bold text-slate-50">Backend engineering</h2>
+                  <p className="mt-2 text-sm leading-7 text-slate-200">
+                    API design, database architecture, service reliability, and automation pipelines.
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-50">Full-stack delivery</h2>
+                  <p className="mt-2 text-sm leading-7 text-slate-200">
+                    Responsive interfaces, TypeScript-heavy apps, and pragmatic product-focused implementation.
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-50">Game & tools</h2>
+                  <p className="mt-2 text-sm leading-7 text-slate-200">
+                    Unreal Engine collaboration, gameplay systems, and developer-facing tooling ideas.
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-50">Cloud + ops</h2>
+                  <p className="mt-2 text-sm leading-7 text-slate-200">
+                    Dockerized deployments, scalable workflows, and practical infrastructure decisions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-      style={{
-        justifyContent: 'center',
-        display: 'flex',
-        zIndex: 20,
+          <motion.div
+            variants={fadeIn("up", "", 0.35, 0.9)}
+            initial="hidden"
+            animate="show"
+            className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-6 backdrop-blur-sm"
+          >
+            <div className="mb-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-100/85">
+                Quick actions
+              </p>
+            </div>
 
-        
-      }}
-    >
-      Overview.
-    </motion.div>
-  </div>
-</div>
-
-<div className="spacer wave-svg-layer-undersea-bottom">
-  <div  className=" flex items-start justify-center w-full">
-    {/* Left side - Text */}
-    <div>
-    <motion.p
-      variants={fadeIn("up", "", 1, 1)}
-      initial="hidden"
-      animate="show"
-      className="max-w-sm   text-blue-300 text-secondary text-[17px] max-w-3xl leading-[30px] nunito-bold "
-      
-      style={{
-        justifyContent: 'center',
-        display: 'flex',
-        textAlign: 'center',
-        
-      }}
-    >
-      Entry-level Software Engineer with experience building backend systems and full-stack applications using Java, Spring Boot, PostgreSQL, React, TypeScript, and Docker. 
-      Skilled in REST API development, workflow automation, and scalable application design, with additional experience in gameplay systems and tools development using Unreal Engine and C++. 
-      Passionate about backend engineering, game development, and building clean, user-focused software solutions.
-    
-
-    </motion.p>
-    <motion.p
-      variants={fadeIn("up", "", 2, 1.2)}
-      initial="hidden"
-      animate="show"
-      >
-      <img
-        src={adminPfp}
-        alt="Dev Pfp"
-        className="w-[300px] h-[300px] rounded-full border-[4px]  border-blue-300 transform  translate-x-5 translate-y-10"
-      />
-    </motion.p>
-    </div>
-
-    {/* Right side - Image */}
-    
-  </div>
-  <motion.div
-        variants={fadeIn("up", "", 3, 1)}
-        initial="hidden"
-        animate="show"
-        ref={frameworkRef}
-        style={{
-          position: 'relative',
-          display: 'flex',
-          
-          top: '50px',
-          right: '',
-          justifyContent: 'center', 
-          
-      }}
-      >
-      <CanvasBox
-      icons={icons}
-      />
-      </motion.div>
-</div>
-  <div className="wave-svg-layer-undersea-below spacer "
-    style={{marginTop:'-16px',
-      position: "relative",
-      zIndex: -1,
-    }}>
-      
-</div>
-
-        </section>
-
-
-      
-    );
-  };
+            <div className="grid gap-4 md:grid-cols-3">
+              <a
+                href="/projects"
+                className="group flex min-h-[92px] items-center justify-center rounded-[1.4rem] border border-cyan-200/40 bg-gradient-to-br from-cyan-300/15 via-sky-400/10 to-blue-500/15 px-5 text-center text-base font-semibold text-slate-50 shadow-[0_18px_40px_rgba(14,165,233,0.18)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-100/70 hover:bg-gradient-to-br hover:from-cyan-300/25 hover:via-sky-400/15 hover:to-blue-500/20 hover:shadow-[0_22px_48px_rgba(45,212,191,0.25)] sm:text-lg"
+              >
+                <span className="inline-flex items-center gap-3">
+                  <span className="text-cyan-100"></span>
+                  <span>go to my projects</span>
+                </span>
+              </a>
+              <a
+                href="/contactme"
+                className="group flex min-h-[92px] items-center justify-center rounded-[1.4rem] border border-cyan-200/40 bg-gradient-to-br from-cyan-300/15 via-sky-400/10 to-blue-500/15 px-5 text-center text-base font-semibold text-slate-50 shadow-[0_18px_40px_rgba(14,165,233,0.18)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-100/70 hover:bg-gradient-to-br hover:from-cyan-300/25 hover:via-sky-400/15 hover:to-blue-500/20 hover:shadow-[0_22px_48px_rgba(45,212,191,0.25)] sm:text-lg"
+              >
+                <span className="inline-flex items-center gap-3">
+                  <span className="text-cyan-100"></span>
+                  <span>contact me</span>
+                </span>
+              </a>
+              <a
+                href="/resume/DevonBedenbaugh_Resume_May252026.pdf"
+                download
+                className="group flex min-h-[92px] items-center justify-center rounded-[1.4rem] border border-cyan-200/40 bg-gradient-to-br from-cyan-300/15 via-sky-400/10 to-blue-500/15 px-5 text-center text-base font-semibold text-slate-50 shadow-[0_18px_40px_rgba(14,165,233,0.18)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-100/70 hover:bg-gradient-to-br hover:from-cyan-300/25 hover:via-sky-400/15 hover:to-blue-500/20 hover:shadow-[0_22px_48px_rgba(45,212,191,0.25)] sm:text-lg"
+              >
+                <span className="inline-flex items-center gap-3">
+                  <span className="text-cyan-100"></span>
+                  <span>download my resume</span>
+                </span>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Home;
-
-//title="Technologies"
-      //description="Familiar Frameworks"
