@@ -19,14 +19,14 @@ const Project = () => {
   const projects = [
     {
       title: "Multiplayer Backend Server",
-      description: "A blender project created to practice lighting, environment building, animation, and asset creation",
+      description: "A scalable multiplayer backend server built to explore API design, database integration, and containerized deployment. The leaderboard function is currently linked to an ongoing godot project.",
       techStack: ["Java, Springboot, PostgreSQL, Docker"],
       image: "",
       githubUrl: "https://github.com/dabeden/springboot-server-backend-api",
     },
     {
       title: "Portfolio Website",
-      description: "A personal portfolio showcasing my projects, skills, and contact information in a responsive 3D design.",
+      description: "A personal portfolio showcasing my projects, skills, and contact information in a responsive design.",
       techStack: ["React", "CSS", "JavaScript", "Threejs"],
       image: "images/portfolio_thumbnail.png",
       githubUrl: "https://github.com/dabeden/portfolio-domain-threejs",
