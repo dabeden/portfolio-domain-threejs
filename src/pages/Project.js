@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import ParticlesComponent from '../components/Particles';
 import Particles from '@tsparticles/react';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -27,7 +28,7 @@ const Project = () => {
       title: "Portfolio Website",
       description: "A personal portfolio showcasing my projects, skills, and contact information in a responsive 3D design.",
       techStack: ["React", "CSS", "JavaScript", "Threejs"],
-      image: "images/website_showcase_ph.png",
+      image: "images/portfolio_thumbnail.png",
       githubUrl: "https://github.com/dabeden/portfolio-domain-threejs",
     },
     {
@@ -64,7 +65,10 @@ const Project = () => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
       style={{
         textAlign: "center",
         padding: "0px",
@@ -385,7 +389,7 @@ const Project = () => {
   position: 'relative',
   zIndex: 2,
 }}></div>
-    </div>
+    </motion.div>
   );
 };
 

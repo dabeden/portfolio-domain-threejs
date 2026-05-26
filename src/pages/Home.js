@@ -96,25 +96,25 @@ const Home = () => {
                 <div>
                   <h2 className="text-lg font-bold text-slate-50">Backend engineering</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    API design, database architecture, service reliability, and automation pipelines.
+                    API design, database architecture, service reliability, and automation systems.
                   </p>
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-slate-50">Full-stack delivery</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    Responsive interfaces, TypeScript-heavy apps, and pragmatic product-focused implementation.
+                    TypeScript-heavy web apps with responsive interfaces and product-focused execution.
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-50">Game & tools</h2>
+                  <h2 className="text-lg font-bold text-slate-50">Game dev</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    Unreal Engine collaboration, gameplay systems, and developer-facing tooling ideas.
+                    Unreal Engine systems, gameplay programming, backend services, and dev tooling.
                   </p>
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-slate-50">Cloud + ops</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    Dockerized deployments, scalable workflows, and practical infrastructure decisions.
+                    Dockerized deployments, scalable infrastructure, and practical system design.
                   </p>
                 </div>
               </div>
