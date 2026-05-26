@@ -10,21 +10,24 @@ const Navbar = () => {
             <nav className="silkscreen-regular sm:text-xl lg:text-xl flex ml-auto text-lg gap-7 font-medium">
                 <NavLink 
                     to="/"  
-                    className={({ isActive }) => isActive ? 'text-blue-500' : 'text-blue-100'}
+                    className={({ isActive }) => `navbar-link ${isActive ? 'is-active' : ''}`}
                 >
-                    About Me
+                    <span className="navbar-link-label">About Me</span>
+                    <span className="navbar-link-hover">About Me</span>
                 </NavLink>
                 <NavLink 
                     to="/contactme"  
-                    className={({ isActive }) => isActive ? 'text-blue-500' : 'text-blue-100'}
+                    className={({ isActive }) => `navbar-link ${isActive ? 'is-active' : ''}`}
                 >
-                    Contact
+                    <span className="navbar-link-label">Contact</span>
+                    <span className="navbar-link-hover">Contact</span>
                 </NavLink>
                 <NavLink 
                     to="/projects"  
-                    className={({ isActive }) => isActive ? 'text-blue-500' : 'text-blue-100'}
+                    className={({ isActive }) => `navbar-link ${isActive ? 'is-active' : ''}`}
                 >
-                    Projects
+                    <span className="navbar-link-label">Projects</span>
+                    <span className="navbar-link-hover">Projects</span>
                 </NavLink>
 
             </nav>

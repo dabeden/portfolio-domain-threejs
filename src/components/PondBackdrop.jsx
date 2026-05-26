@@ -126,13 +126,13 @@ function PondScene() {
     <>
       <ambientLight intensity={0.95} />
       <hemisphereLight
-        skyColor="#b8f8ff"
-        groundColor="#06111b"
-        intensity={0.8}
+        skyColor="#fff0bf"
+        groundColor="#3b2a12"
+        intensity={0.85}
       />
-      <directionalLight position={[5, 7, 4]} intensity={1.4} color="#dffbff" castShadow />
-      <directionalLight position={[-5, 6, -5]} intensity={0.85} color="#73d8ff" />
-      <pointLight position={[0, 2.4, 1.5]} intensity={1.4} color="#7fe9ff" distance={8} />
+      <directionalLight position={[5, 7, 4]} intensity={1.3} color="#ffe9b5" castShadow />
+      <directionalLight position={[-5, 6, -5]} intensity={0.8} color="#ffd166" />
+      <pointLight position={[0, 2.4, 1.5]} intensity={1.2} color="#ffd166" distance={8} />
       <WaterSurface />
       <SampleCube />
     </>
@@ -148,8 +148,8 @@ const PondBackdrop = () => {
       shadows
       style={{ width: "100%", height: "100%" }}
     >
-      <color attach="background" args={["#030a12"]} />
-      <fog attach="fog" args={["#030a12", 8, 18]} />
+      <color attach="background" args={["#1a140d"]} />
+      <fog attach="fog" args={["#7c5b16", 8, 18]} />
       <PondScene />
     </Canvas>
   );
