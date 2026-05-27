@@ -94,27 +94,27 @@ const Home = () => {
               </p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-50">Backend engineering</h2>
+                  <h2 className="text-lg font-bold text-slate-50">Backend</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    API design, database architecture, service reliability, and automation systems.
+                    API design, database architecture, service reliability, automation systems
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-50">Full-stack delivery</h2>
+                  <h2 className="text-lg font-bold text-slate-50">Full Stack</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    TypeScript-heavy web apps with responsive interfaces and product-focused execution.
+                    TypeScript-heavy web apps with responsive interfaces, product-focused execution
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-50">Game dev</h2>
+                  <h2 className="text-lg font-bold text-slate-50">Game Dev</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    Unreal Engine systems, gameplay programming, backend services, and dev tooling.
+                    Unreal Engine systems, gameplay programming, backend services, and dev tooling
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-50">Cloud + ops</h2>
+                  <h2 className="text-lg font-bold text-slate-50">Cloud</h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">
-                    Dockerized deployments, scalable infrastructure, and practical system design.
+                    Dockerized deployments, scalable infrastructure, practical system design
                   </p>
                 </div>
               </div>
@@ -140,7 +140,7 @@ const Home = () => {
               >
                 <span className="inline-flex items-center gap-3">
                   <span className="text-cyan-100"></span>
-                  <span>go to my projects</span>
+                  <span>My Projects Page</span>
                 </span>
               </a>
               <a
@@ -149,7 +149,7 @@ const Home = () => {
               >
                 <span className="inline-flex items-center gap-3">
                   <span className="text-cyan-100"></span>
-                  <span>contact me</span>
+                  <span>Contact Me</span>
                 </span>
               </a>
               <a
@@ -159,7 +159,7 @@ const Home = () => {
               >
                 <span className="inline-flex items-center gap-3">
                   <span className="text-cyan-100"></span>
-                  <span>download my resume</span>
+                  <span>Download My Resume</span>
                 </span>
               </a>
             </div>

@@ -20,7 +20,7 @@ const Project = () => {
     {
       title: "Multiplayer Backend Server",
       description: "A scalable multiplayer backend server built to explore API design, database integration, and containerized deployment. The leaderboard function is currently linked to an ongoing godot project.",
-      techStack: ["Java, Springboot, PostgreSQL, Docker"],
+      techStack: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
       image: "",
       githubUrl: "https://github.com/dabeden/springboot-server-backend-api",
     },
